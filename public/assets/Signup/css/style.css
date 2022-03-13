@@ -211,7 +211,7 @@ body {
 .main {
   position: relative; }
 
-.container {
+.container-fluid {
   width: 1400px;
   margin: 0 auto;
   background: #fff; }

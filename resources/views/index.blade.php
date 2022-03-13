@@ -118,7 +118,108 @@
       <div class="container text-center  ">
  
          <button  class="btn mt-10 btn-outline-success "> <a href="{{route('all_rooms')}}"> GET ROOM</a></button>
-          <button class="btn mt-10 btn-outline-success ">SHARE ROOM</button>
+         
+<!-- Button trigger modal -->
+<button type="button" class="btn mt-10 btn-outline-success " data-toggle="modal" data-target="#exampleModal">
+  SHARE ROOM
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form action="{{route('create_room')}}" method="POST" enctype="multipart/form-data" >
+          @csrf
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Room Description</label>
+              <input type="text" name="property_description" class="form-control"  placeholder="Description">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Rent Price in rupee</label>
+              <input type="number" name="rent_price" class="form-control" id="inputPassword4" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Address</label>
+            <input type="text" name="address" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputAddress2">Bed</label>
+            <input type="text" name="bed" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputAddress2">Room Image</label>
+            <input type="file" name="room_image" class="form-control" id="inputAddress2" placeholder="image">
+          </div>
+        </div>
+          
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label for="inputCity">Bathrooms</label>
+              <input type="text" name="bathroom" class="form-control" id="inputCity">
+            </div>
+            <div class="form-group col-md-5">
+              <label for="inputState">State</label>
+              <select id="inputState"  class="form-control">
+                <option selected>Choose...</option>
+                @foreach(config('component.states') as  $code => $state)
+                <option value="{{ $code }}" @if(@$region['value']==$code) selected @endif>
+                         {{ $state}} ({{$code}})
+                </option>
+                @endforeach
+              </select>
+            </div>
+            
+            <div class="form-group col-md-5">
+              <label for="inputZip">Pin</label>
+              <input type="number" name="pin" class="form-control" id="inputZip">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Owner Name</label>
+                <input type="text" name="owner_name" class="form-control"  placeholder="Description">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Owner Contact</label>
+                <input type="number" name="owner_contact" class="form-control" id="inputPassword4" placeholder="Password">
+              </div>
+          </div>
+          {{-- <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">
+                Check me out
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button> --}}
+        
+            
+            
+             
+              <div class="form-submit ">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit"  class="btn btn-secondary" id="submit" name="submit">submit</button>
+              
+            </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
+@if(Session::has('message'))
+<p class="alert alert-danger" role="alert">{{ Session::get('message') }}</p>
+@endif
      
       </div>
   </section>

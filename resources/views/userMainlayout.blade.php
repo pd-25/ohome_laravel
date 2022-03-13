@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +32,8 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ 
 </head>
 
 <body class="wholeBody">
@@ -126,7 +130,7 @@
         </div>
       </form>
     </div>
-  </div><!-- End Property Search Section -->>
+  </div><!-- End Property Search Section -->
 
   <!-- ======= Header/Navbar ======= -->
   <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
@@ -175,11 +179,16 @@
             <div class="dropdown-menu">
              
                  
+              @guest
+              <a class="dropdown-item " href="{{route('sign_in')}}"><span>LOG IN</span> </a>
+              <a class="dropdown-item " href="{{route('sign_up')}}"><span>SIGN UP</span> </a>
+              @endguest
               
-              
-              <a class="dropdown-item " href="{{route('sign_in')}}">LOG IN</a>
-              <a class="dropdown-item " href="{{route('sign_up')}}">SIGN UP</a> 
-              <a class="dropdown-item " href="#">logout</a>
+              @auth
+              <a class="dropdown-item " href="#" >{{$user->fname }} <span class="caret"></span></a>
+              <a href="">Logout</a>
+              @endauth 
+             
               
              
               
@@ -361,7 +370,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

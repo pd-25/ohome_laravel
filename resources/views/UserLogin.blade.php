@@ -38,8 +38,8 @@
             <form action="{{route('signed_in')}}" method="post">
               @csrf
               <div class="form-group first">
-                <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" id="username">
+                <label for="username">Username/Email</label>
+                <input type="text" name="email" class="form-control" id="username">
 
               </div>
               <div class="form-group last mb-3">
