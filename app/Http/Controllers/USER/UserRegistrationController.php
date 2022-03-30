@@ -125,7 +125,7 @@ public function show_user(Request $request){
  
             }else{
                 $request-> session()->put('userLogin', true);
-               // $request-> session()->put('ADMIN_ID', $user->id);
+                $request-> session()->put('ADMIN_ID', $user->id);
 
                
             

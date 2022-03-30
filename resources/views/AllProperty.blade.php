@@ -4,7 +4,9 @@
 @section('content')
 
 <main id="main">
-
+  @if(Session::has('message'))
+  <p class="alert alert-danger" role="alert">{{ Session::get('message') }}</p>
+  @endif
     <!-- ======= Intro Single ======= -->
     <section class="intro-single">
       <div class="container">
@@ -30,7 +32,7 @@
         </div>
       </div>
     </section><!-- End Intro Single-->
-
+    
     <!-- ======= Property Grid ======= -->
     <section class="property-grid grid">
       <div class="container">
@@ -334,7 +336,7 @@
             </div>
           </div> --}}
         </div>
-        <div class="row">
+        {{-- <div class="row">
           <div class="col-sm-12">
             <nav class="pagination-a">
               <ul class="pagination justify-content-end">
@@ -360,7 +362,7 @@
               </ul>
             </nav>
           </div>
-        </div>
+        </div> --}}
       </div>
     </section><!-- End Property Grid Single-->
 

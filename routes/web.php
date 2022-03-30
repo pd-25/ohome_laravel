@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;    
 
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $data = Room::orderBy('id', 'DESC')->get()->toArray();
+        //dd($data[0],$data[1],$data[2]);exit;
+        $latestrooms =[ $data[0],$data[1],$data[2]];
+        //dd($latestrooms);
+        return view('index',["latestrooms"=>$latestrooms] );
 });
 Route::get('/get_fas', [App\Http\Controllers\TestController::class, 'get_fas']);
 
@@ -32,10 +37,10 @@ Route::post('/sign_in', [App\Http\Controllers\USER\UserRegistrationController::c
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/index', [App\Http\Controllers\USER\IndexController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/index', [App\Http\Controllers\USER\IndexController::class, 'index'])->name('index');
 Route::get('/all_rooms', [App\Http\Controllers\USER\PropertyController::class, 'all_rooms'])->name('all_rooms');
-Route::get('/single_room', [App\Http\Controllers\USER\PropertyController::class, 'single_room'])->name('single_room');
+Route::get('/single_room/{?}', [App\Http\Controllers\USER\PropertyController::class, 'single_room'])->name('single_room');
 
 Route::get('/about', [App\Http\Controllers\USER\AboutController::class, 'about'])->name('about');
 Route::get('/contact', [App\Http\Controllers\USER\ContactController::class, 'contact'])->name('contact');

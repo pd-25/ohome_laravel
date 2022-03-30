@@ -63,7 +63,7 @@
                       <span class="bi bi-cash"></span>
                     </div>
                     <div class="card-title-c align-self-center">
-                      <h5 class="title-c">15000</h5>
+                      <h5 class="title-c">{{ $room->rent_price }}</h5>
                     </div>
                   </div>
                 </div>

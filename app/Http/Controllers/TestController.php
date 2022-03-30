@@ -19,6 +19,15 @@ class TestController extends Controller
             'hsn_sac' => 'string|numeric',
             'available' => 'required|boolean',
      ]);
+     $item = Item::create( $request->all());
+     if($item){
+        return response()->json([
+            'status'=>'success',
+            'data'=>$item
+        ]);
+     }else{
+        return response()->json(['status'=>'error']);
+     }
         
     //    $item= Item::insertGetId($request->all());                                                                                                                                //$request->validate(['picture' => 'mimes:jpeg,png']) =$request->picture ?? Null;
     //     return response()->json([
@@ -29,8 +38,8 @@ class TestController extends Controller
     
         // $item= Item::create($request->all());
        // $item= DB::table('items')->insertGetId($request->all());
-       $item = new Item();
-       $data = $request->all();
+    //    $item = new Item();
+    //    $data = $request->all();
     //    $item->type =$request->type;
     //    $item->brand =$request->brand;
     //    $item->hsn_sac =$request->hsn_sac;
@@ -40,12 +49,12 @@ class TestController extends Controller
     //    $item->company =$request->company;
     //    $item->available =$request->available;
        
-       if($item->fill($data)->save()){
-        return response()->json([
-            'status'=>'success',
-            'data'=>$item
-        ]);
-       }
+    //    if($item->fill($data)->save()){
+    //     return response()->json([
+    //         'status'=>'success',
+    //         'data'=>$item
+    //     ]);
+    //    }
         
 
         // $item= Item::create($request->all());

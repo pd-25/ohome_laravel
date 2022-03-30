@@ -21,49 +21,50 @@ class PropertyController extends Controller
         // }
     }
 
-    public function single_room(){
-        return view('singleRoom');
+
+   
+
+    public function single_room(Request $request, $id){
+        $data['room'] = Room::get()->where($id);
+        dd($data);
+        return view('singleRoom', $data);
     }
 
     public function create_room(Request $request){
         $request->validate([
-            'property_description'=> 'required',
-            'rent_price'=> 'required',
-            'address'=> 'required',
-            'bed'=> 'required',
-            'bathroom'=> 'required',
-            'pin'=> 'required',
-            'owner_name'=> 'required',
-            'owner_contact'=> 'required',
+            'property_description'=> 'required|string',
+            'rent_price'=> 'required|numeric',
+            'address'=> 'required|string',
+            'bed'=> 'required|numeric',
+            'room_image'=> 'image|mimes:jpeg,png,jpg,gif,svg',
+            'bathroom'=> 'required|numeric',
+            'pin'=> 'required|numeric',
+            'owner_name'=> 'required|string',
+            'owner_contact'=> 'required|string',
         ]);
+        // if(!$validate){
+        //     $request->session()->flash('message', 'some problem!');
+        //     return redirect('all_rooms');
+        // }
+        $rooms = $request->except('room_image');
         $imagefullname = '';
         if ($request->hasFile('room_image')) {
             $image = $request->file('room_image');
-            
             $imgname = time().rand(0000,9999).'.'.$image->getClientOriginalExtension();
-            //$image['room_image'] = $imgname;
             $imagefullname = $image->move('userIdImage', $imgname);
             //storePubliclyAs
         }
-      
-// $ins = [
-//     'property_description' => $request->property_description,
-//     'room_image' =>$request->$imgname,
-//     'rent_price' =>$request->rent_price,
-//     'address' =>$request->address,
-//     'bed' =>$request->bed,
-//     'bathroom' =>$request->bathroom,
-//     'pin' =>$request->pin,
-//     'owner_name' =>$request->owner_name,
-//     'owner_contact' =>$request->owner_contact,
-// ];
-        $insert_room = Room::create($request->all());
+
+        $rooms['room_image'] =$imgname;
+        //dd($rooms);
+        $insert_room = Room::create($rooms);
         if($insert_room){
             $request->session()->flash('message', 'room inserted successfully');
             return redirect('all_rooms');
         }else{
             $request->session()->flash('message', 'some problem!');
-            return redirect()->back();
+            return redirect()->back()->with('message', 'error ');;
                 }
     }
 }
+

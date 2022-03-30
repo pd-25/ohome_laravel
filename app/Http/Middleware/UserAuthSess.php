@@ -16,9 +16,14 @@ class UserAuthSess
      */
     public function handle(Request $request, Closure $next)
     {
- 
-    return $next($request);
-   }
+        if(!auth()->user()){
+            
+        }else{
+            return redirect('sign_in.sav');
+        }
+
+        return $next($request);
+    }
 
 }
 
