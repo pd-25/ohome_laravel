@@ -42,10 +42,7 @@ class PropertyController extends Controller
             'owner_name'=> 'required|string',
             'owner_contact'=> 'required|string',
         ]);
-        // if(!$validate){
-        //     $request->session()->flash('message', 'some problem!');
-        //     return redirect('all_rooms');
-        // }
+        
         $rooms = $request->except('room_image');
         $imagefullname = '';
         if ($request->hasFile('room_image')) {
