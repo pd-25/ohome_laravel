@@ -111,15 +111,17 @@
    <!--search bar -->
    <div class="container">
       <div class="row height d-flex justify-content-center align-items-center">
-         <div class="col-md-8">
+         {{-- <div class="col-md-8">
+            <form >
             <div class="search">
-               <i class="fa fa-search"></i> <input type="text" class="form-control" placeholder="Search by room address"> 
+               <i class="fa fa-search"></i> <input type="search" name="search" class="form-control" placeholder="Search by room address"> 
                <div class="justify-content-center">
-                  <a href=""><button class="btn btn-success ">Search</button> </a>
+                  <button class="btn btn-success ">Search</button> 
                </div>
             </div>
+         </form>
             
-         </div>
+         </div> --}}
          <div class="container text-center mb-5">
           <h1>I'M<span > O-HOME</span> <br> Welcome to your  OUTSIDE HOME </h1>
 

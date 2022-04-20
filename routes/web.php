@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
 Route::get('/', function () {
     $data = Room::orderBy('id', 'DESC')->get()->toArray();
         //dd($data[0],$data[1],$data[2]);exit;
@@ -40,6 +41,9 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/index', [App\Http\Controllers\USER\IndexController::class, 'index'])->name('index');
 Route::get('/all_rooms', [App\Http\Controllers\USER\PropertyController::class, 'all_rooms'])->name('all_rooms');
+//
+//Route::get('/get_room', [App\Http\Controllers\USER\PropertyController::class, 'get_room'])->name('all_rooms');
+//
 Route::get('/single_room/{?}', [App\Http\Controllers\USER\PropertyController::class, 'single_room'])->name('single_room');
 
 Route::get('/about', [App\Http\Controllers\USER\AboutController::class, 'about'])->name('about');
@@ -50,3 +54,8 @@ Route::post('/create-Room', [App\Http\Controllers\USER\PropertyController::class
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+

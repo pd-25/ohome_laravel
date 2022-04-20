@@ -37,7 +37,7 @@
     <section class="property-grid grid">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12">
+          {{-- <div class="col-sm-12">
             <div class="grid-option">
               <form>
                 <select class="custom-select">
@@ -48,7 +48,7 @@
                 </select>
               </form>
             </div>
-          </div>
+          </div> --}}
           @foreach ($rooms as $room)
               
           

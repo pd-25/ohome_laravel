@@ -52,10 +52,10 @@
           <div class="col-md-12 mb-2">
             <div class="form-group">
               <label class="pb-2" for="Type">Keyword</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
+              <input type="search" name="search" class="form-control form-control-lg form-control-a" placeholder="search by location">
             </div>
           </div>
-          <div class="col-md-6 mb-2">
+          {{-- <div class="col-md-6 mb-2">
             <div class="form-group mt-3">
               <label class="pb-2" for="Type">Type</label>
               <select class="form-control form-select form-control-a" id="Type">
@@ -123,7 +123,7 @@
                 <option>$200,000</option>
               </select>
             </div>
-          </div>
+          </div> --}}
           <div class="col-md-12">
             <button type="submit" class="btn btn-b">Search Property</button>
           </div>

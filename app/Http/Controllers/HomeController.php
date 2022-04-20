@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\qsn;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -25,7 +26,10 @@ class HomeController extends Controller
     public function index()
     {
         $data = Room::orderBy('id', 'DESC')->get();
-        dd($data);
+        //dd($data);
         //return view('home');
     }
-}
+
+    
+    }
+

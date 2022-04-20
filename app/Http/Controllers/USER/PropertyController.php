@@ -11,15 +11,25 @@ use Illuminate\Support\Facades\Auth;
 class PropertyController extends Controller
 {
     //
-    public function all_rooms(){
+    public function all_rooms(Request $request){
         // if(Auth::id()){
-        $data['rooms'] = Room::get();
+            $search = $request['search'] ?? "";
+            if($search != ""){
+                $data['rooms'] = Room::where('address', 'LIKE', "%$search%")->get();
+            }else{
+                $data['rooms'] = Room::get();
+            }
+        
 
         return view('AllProperty',$data);
         // }else{
         //     return redirect('sign_in.sav');
         // }
     }
+    // public function get_room(Request $request){
+    //     $get_room = Room::where('id', 30)->value('property_description');//pluck
+    //     return $get_room;
+    // }
 
 
    
