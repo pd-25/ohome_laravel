@@ -17,7 +17,7 @@ class PropertyController extends Controller
             if($search != ""){
                 $data['rooms'] = Room::where('address', 'LIKE', "%$search%")->get();
             }else{
-                $data['rooms'] = Room::get();
+                $data['rooms'] = Room::all();
             }
         
 
@@ -34,9 +34,9 @@ class PropertyController extends Controller
 
    
 
-    public function single_room(Request $request, $id){
-        $data['room'] = Room::get()->where($id);
-        dd($data);
+    public function single_room(int $id){
+        $data['room'] = Room::where('id',$id)->first();
+        //dd($data);
         return view('singleRoom', $data);
     }
 

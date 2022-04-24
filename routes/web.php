@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PaytmController;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;    
@@ -44,12 +45,20 @@ Route::get('/all_rooms', [App\Http\Controllers\USER\PropertyController::class, '
 //
 //Route::get('/get_room', [App\Http\Controllers\USER\PropertyController::class, 'get_room'])->name('all_rooms');
 //
-Route::get('/single_room/{?}', [App\Http\Controllers\USER\PropertyController::class, 'single_room'])->name('single_room');
+Route::get('/single_room', [App\Http\Controllers\USER\PropertyController::class, 'single_room'])->name('single_room');
 
 Route::get('/about', [App\Http\Controllers\USER\AboutController::class, 'about'])->name('about');
 Route::get('/contact', [App\Http\Controllers\USER\ContactController::class, 'contact'])->name('contact');
 Route::post('/create-Room', [App\Http\Controllers\USER\PropertyController::class, 'create_room'])->name('create_room');
 //Route::get('/', [App\Http\Controllers\USER\PropertyController::class, 'create_room'])->name('create_room');
+
+
+//Paytm Payment
+Route::post('paytm-payment',[PaytmController::Class, 'paytmPayment'])->name('paytm.payment');
+Route::post('paytm-callback',[PaytmController::Class, 'paytmCallback'])->name('paytm.callback');
+Route::get('paytm-purchase',[PaytmController::Class, 'paytmPurchase'])->name('paytm.purchase');
+
+//paytm end
 
 Auth::routes();
 
