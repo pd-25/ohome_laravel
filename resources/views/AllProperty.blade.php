@@ -69,9 +69,9 @@
                     <div class="price-box d-flex">
                       <span class="price-a">rent | {{$room->rent_price}}</span>
                     </div>
-                    <a href="{{route('single_room')}}" class="link-a">Click here to view
+                    <button class="btn mt-10 btn-outline-success "><a href="{{route('checkout.credit-card')}}" class="link-a">book room
                       <span class="bi bi-chevron-right"></span>
-                    </a>
+                    </a></button>
                   </div>
                   <div class="card-footer-a">
                     <ul class="card-info d-flex justify-content-around">
