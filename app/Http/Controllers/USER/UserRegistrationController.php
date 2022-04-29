@@ -105,8 +105,16 @@ public function show_user(Request $request){
 }
 
 
-    public function sign_in(){
-        return view('UserLogin');
+    public function sign_in(Request $request){
+        //dd($request->session()->get('userLogin'));
+        if(!$request->session()->get('userLogin'))
+        {
+            return view('UserLogin'); 
+        }
+
+       
+        return redirect('index');
+    
     }
 
     public function signed_in(Request $request){
@@ -126,10 +134,20 @@ public function show_user(Request $request){
             }else{
                 $request-> session()->put('userLogin', true);
                 $request-> session()->put('ADMIN_ID', $user->id);
+                //dd($request->session());
 
                
             
-                return view('index');
+                return redirect('index');
             }
+    }
+
+    //logout
+    public function logout()
+
+    {
+        Session::forget('userLogin') ;
+        return redirect('/sign_in.sav');
+        # code...
     }
 }

@@ -25,6 +25,8 @@ class CreateRoomsTable extends Migration
             $table->string('owner_name');
             $table->string('owner_contact');
             $table->string('pin');
+            $table->foreignId('user_id')->constrained('users');
+
             $table->timestamps();
         });
     }

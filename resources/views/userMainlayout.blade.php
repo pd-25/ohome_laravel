@@ -178,16 +178,26 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Authority</a>
             <div class="dropdown-menu">
              
-                 
-              @guest
-              <a class="dropdown-item " href="{{route('sign_in')}}"><span>LOG IN</span> </a>
-              <a class="dropdown-item " href="{{route('sign_up')}}"><span>SIGN UP</span> </a>
-              @endguest
+             
+             
               
-              @auth
+              <a class="dropdown-item " href="{{route('logout')}}"><span>logout</span> </a>
+
+              @php
+                if(session()->get('userLogin') != 1)
+                {
+                 @endphp
+                  <a class="dropdown-item " href="{{route('sign_in')}}"><span>LOG IN</span> </a>
+                   <a class="dropdown-item " href="{{route('sign_up')}}"><span>SIGN UP</span> </a>    
+                  @php
+
+                }
+                  @endphp
+              
+              {{-- @auth
               <a class="dropdown-item " href="#" >{{$user->fname }} <span class="caret"></span></a>
               <a href="">Logout</a>
-              @endauth 
+              @endauth  --}}
              
               
              

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\USER;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
 use App\Models\Usersignups;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
 
 class PropertyController extends Controller
 {
@@ -20,7 +22,7 @@ class PropertyController extends Controller
                 $data['rooms'] = Room::all();
             }
         
-
+            //$data['names'] = $something;
         return view('AllProperty',$data);
         // }else{
         //     return redirect('sign_in.sav');
@@ -53,7 +55,7 @@ class PropertyController extends Controller
             'owner_contact'=> 'required|string',
         ]);
         
-        $rooms = $request->except('room_image');
+        $rooms = $request->except(['room_image','user_id']);
         $imagefullname = '';
         if ($request->hasFile('room_image')) {
             $image = $request->file('room_image');
@@ -63,15 +65,23 @@ class PropertyController extends Controller
         }
 
         $rooms['room_image'] =$imgname;
-        //dd($rooms);
+       // $rooms['user_id'] = $request->session()->get('ADMIN_ID');
+        $rooms['user_id'] = Session::get('id');
+        //dd($request->session()->all());
         $insert_room = Room::create($rooms);
+        dd($insert_room);
         if($insert_room){
             $request->session()->flash('message', 'room inserted successfully');
             return redirect('all_rooms');
         }else{
             $request->session()->flash('message', 'some problem!');
             return redirect()->back()->with('message', 'error ');;
-                }
+        }
+
+        // public function my_room(Request $request)
+        // {
+        //     # code...
+        // }
     }
 }
 
