@@ -120,18 +120,21 @@ public function show_user(Request $request){
     public function signed_in(Request $request){
         $request->validate([
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required' 
         ]);
         
        
 
             
             $user =  User::where(['email'=>$request->email])->first();
+            // dd($user->id);
             if(!$user || !Hash::check($request->password,$user->password)){
                 return redirect()->back();
                 $request->session()->flash('message', 'credential error!');
  
             }else{
+                Session::put('user_id',$user->id);
+                //dd(Session::get('user_id'));
                 $request-> session()->put('userLogin', true);
                 $request-> session()->put('ADMIN_ID', $user->id);
                 //dd($request->session());

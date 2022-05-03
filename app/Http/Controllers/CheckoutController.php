@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    public function checkout()
+    public function checkout(Request $request)
     {   
+    //    $room =  Room::where('id',$id)->select('rent_price')->first();
         // Enter Your Stripe Secret
         \Stripe\Stripe::setApiKey('sk_test_51Ksk2HSF0wX6GIvmY42fN6yNNKdKqL3Q7pNsiSDVtL8eupFTh0vZi4zeOrZFwnQgf0WFb74fSSg3NsQJdOWKPkc600ngmTpJTY');
         		
+		// $amount = $room->rent_price;
 		$amount = 100;
 		$amount *= 1500;
         $amount = (int) $amount;

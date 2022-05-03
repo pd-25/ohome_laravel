@@ -20,6 +20,7 @@ class Room extends Model
         'owner_name',
         'owner_contact',
         'pin',
+        'user_id'
     ];
 
 }

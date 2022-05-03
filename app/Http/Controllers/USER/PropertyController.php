@@ -4,26 +4,30 @@ namespace App\Http\Controllers\USER;
 
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\User;
 use App\Models\Usersignups;
-use Illuminate\Contracts\Session\Session;
+
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Session\Session as SessionSession;
+
 
 class PropertyController extends Controller
 {
     //
     public function all_rooms(Request $request){
         // if(Auth::id()){
+            $userid = Session::get('user_id');
+            $username = User::where('id',$userid)->select('fname')->first();
             $search = $request['search'] ?? "";
             if($search != ""){
-                $data['rooms'] = Room::where('address', 'LIKE', "%$search%")->get();
+                $data['rooms'] = Room::where('address', 'LIKE', "%$search%")->where('availability',1)->get();
             }else{
-                $data['rooms'] = Room::all();
+                $data['rooms'] = Room::where('availability',1)->get();
             }
         
             //$data['names'] = $something;
-        return view('AllProperty',$data);
+        return view('AllProperty',$data,['username'=>$username->fname]);
         // }else{
         //     return redirect('sign_in.sav');
         // }
@@ -65,11 +69,14 @@ class PropertyController extends Controller
         }
 
         $rooms['room_image'] =$imgname;
+        $rooms['availability'] =1;
+        // dd(Session::get('user_id'));
        // $rooms['user_id'] = $request->session()->get('ADMIN_ID');
-        $rooms['user_id'] = Session::get('id');
+        $rooms['user_id'] = Session::get('user_id');
+        //dd($rooms);
         //dd($request->session()->all());
         $insert_room = Room::create($rooms);
-        dd($insert_room);
+       // dd($insert_room);
         if($insert_room){
             $request->session()->flash('message', 'room inserted successfully');
             return redirect('all_rooms');
@@ -77,11 +84,28 @@ class PropertyController extends Controller
             $request->session()->flash('message', 'some problem!');
             return redirect()->back()->with('message', 'error ');;
         }
+    }
 
-        // public function my_room(Request $request)
-        // {
-        //     # code...
-        // }
+    public function my_room(Request $request)
+    {
+        $userid = Session::get('user_id');
+        //dd($userid);
+        $username = User::where('id',$userid)->select('fname')->first();
+        $myRoom['myRooms'] = Room::where('user_id',$userid)->get();
+        return view('myroom',$myRoom,['username'=>$username->fname]);
+    }
+
+    public function edit_Myroom(Request $request){
+        $room['edit_room'] = Room::where('id',$request->id)->first();
+        //dd($room);
+        $userid = Session::get('user_id');
+        
+        $username = User::where('id',$userid)->select('fname')->first();
+        return view('editRoom',$room,['username'=>$username->fname]);
+    }
+
+    public function edit_room(){
+        
     }
 }
 

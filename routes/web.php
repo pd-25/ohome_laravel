@@ -53,7 +53,8 @@ Route::get('/my-room', [App\Http\Controllers\USER\PropertyController::class, 'my
 Route::get('/about', [App\Http\Controllers\USER\AboutController::class, 'about'])->name('about');
 Route::get('/contact', [App\Http\Controllers\USER\ContactController::class, 'contact'])->name('contact');
 Route::post('/create-Room', [App\Http\Controllers\USER\PropertyController::class, 'create_room'])->name('create_room');
-//Route::get('/', [App\Http\Controllers\USER\PropertyController::class, 'create_room'])->name('create_room');
+Route::get('/edit_Myroom/{id}', [App\Http\Controllers\USER\PropertyController::class, 'edit_Myroom'])->name('edit_Myroom');
+Route::post('/edit-Room/{id}', [App\Http\Controllers\USER\PropertyController::class, 'edit_room'])->name('edit_room');
 
 //stripe
 Route::get('checkout',[CheckoutController::class, 'checkout']);

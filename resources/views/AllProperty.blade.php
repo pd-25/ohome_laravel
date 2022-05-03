@@ -62,14 +62,17 @@
                   <div class="card-header-a">
                     <h2 class="card-title-a">
                       <a href="#">{{$room->address}}
-                        {{-- <br /> Olive Road Two</a> --}}
+                        
                     </h2>
                   </div>
                   <div class="card-body-a">
                     <div class="price-box d-flex">
                       <span class="price-a">rent | {{$room->rent_price}}</span>
                     </div>
-                    <button class="btn mt-10 btn-outline-success "><a href="{{route('checkout.credit-card')}}" class="link-a">book room
+                    <button class="btn mt-10 btn-outline-success "><a href="{{route('checkout.credit-card',$room->id)}}" class="link-a">book room
+                      <span class="bi bi-chevron-right"></span>
+                    </a></button><b style="color:white">or</b>
+                    <button class="btn mt-10 btn-outline-success "><a href="#" class="link-a">Contact Owner
                       <span class="bi bi-chevron-right"></span>
                     </a></button>
                   </div>
