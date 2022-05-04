@@ -24,14 +24,14 @@
   <div class="d-lg-flex half">
     <div class="bg order-1 order-md-2" style="background-image: url('assets/userlogin/images/bg_1.jpg');"></div>
     <div class="contents order-2 order-md-1">
-
+      @if(Session::has('message'))
+      <p class="alert alert-info">{{ Session::get('message') }}</p>
+      @endif
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
             <div class="mb-4">
-              @if(Session::has('message'))
-              <p class="alert alert-info">{{ Session::get('message') }}</p>
-              @endif
+             
               <h3>Sign In</h3>
               <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
             </div>

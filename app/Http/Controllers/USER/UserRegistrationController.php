@@ -92,17 +92,19 @@ class UserRegistrationController extends Controller
         
     
 
-//login code
 
-public function show_user(Request $request){
-    $data = ['lname'=>'eeeeee'];
-    $get = User::where([['lname','=','eeeeee'],['idcard','=','driving']])->first();
-    if($data['lname']==$get['lname']){
-    return $get;
-    }else{
-        return 'itsss';
-    }
-}
+
+// public function show_user(Request $request){
+//     $data = ['lname'=>'eeeeee'];
+//     $get = User::where([['lname','=','eeeeee'],['idcard','=','driving']])->first();
+//     if($data['lname']==$get['lname']){
+//     return $get;
+//     }else{
+//         return 'itsss';
+//     }
+// }
+
+//login code
 
 
     public function sign_in(Request $request){
@@ -129,8 +131,9 @@ public function show_user(Request $request){
             $user =  User::where(['email'=>$request->email])->first();
             // dd($user->id);
             if(!$user || !Hash::check($request->password,$user->password)){
-                return redirect()->back();
                 $request->session()->flash('message', 'credential error!');
+
+                return redirect()->back();
  
             }else{
                 Session::put('user_id',$user->id);

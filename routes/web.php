@@ -4,7 +4,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaytmController;
 use App\Models\Room;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;    
+use Illuminate\Support\Facades\Auth;   
+use App\Http\Controllers\BotManController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,12 @@ Route::get('/logout', [App\Http\Controllers\USER\UserRegistrationController::cla
 
 
 Auth::routes();
+// Route::get('/', function () {
+//     return view('welcom');
+// });
+Route::match(['get', 'post'], '/botman', [App\Http\Controllers\BotManController::class, 'handle']);
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/index', [App\Http\Controllers\USER\IndexController::class, 'index'])->name('index');
 Route::get('/all_rooms', [App\Http\Controllers\USER\PropertyController::class, 'all_rooms'])->name('all_rooms');
 //
