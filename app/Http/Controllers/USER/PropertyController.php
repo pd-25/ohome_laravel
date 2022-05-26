@@ -16,7 +16,7 @@ class PropertyController extends Controller
 {
     //
     public function all_rooms(Request $request){
-        // if(Auth::id()){
+        
             $userid = Session::get('user_id');
             $username = User::where('id',$userid)->select('fname')->first();
             $search = $request['search'] ?? "";
@@ -25,24 +25,12 @@ class PropertyController extends Controller
             }else{
                 $data['rooms'] = Room::where('availability',1)->get();
             }
+         return view('AllProperty',$data,['username'=>$username->fname]);
         
-            //$data['names'] = $something;
-        return view('AllProperty',$data,['username'=>$username->fname]);
-        // }else{
-        //     return redirect('sign_in.sav');
-        // }
     }
-    // public function get_room(Request $request){
-    //     $get_room = Room::where('id', 30)->value('property_description');//pluck
-    //     return $get_room;
-    // }
-
-
-   
-
+    
     public function single_room(int $id){
         $data['room'] = Room::where('id',$id)->first();
-        //dd($data);
         return view('singleRoom', $data);
     }
 
@@ -70,13 +58,8 @@ class PropertyController extends Controller
 
         $rooms['room_image'] =$imgname;
         $rooms['availability'] =1;
-        // dd(Session::get('user_id'));
-       // $rooms['user_id'] = $request->session()->get('ADMIN_ID');
         $rooms['user_id'] = Session::get('user_id');
-        //dd($rooms);
-        //dd($request->session()->all());
         $insert_room = Room::create($rooms);
-       // dd($insert_room);
         if($insert_room){
             $request->session()->flash('message', 'room inserted successfully');
             return redirect('all_rooms');
@@ -89,7 +72,6 @@ class PropertyController extends Controller
     public function my_room(Request $request)
     {
         $userid = Session::get('user_id');
-        //dd($userid);
         $username = User::where('id',$userid)->select('fname')->first();
         $myRoom['myRooms'] = Room::where('user_id',$userid)->get();
         return view('myroom',$myRoom,['username'=>$username->fname]);
@@ -97,7 +79,6 @@ class PropertyController extends Controller
 
     public function edit_Myroom(Request $request){
         $room['edit_room'] = Room::where('id',$request->id)->first();
-        //dd($room);
         $userid = Session::get('user_id');
         
         $username = User::where('id',$userid)->select('fname')->first();
@@ -108,4 +89,16 @@ class PropertyController extends Controller
         
     }
 }
+
+
+
+// public function get_room(Request $request){
+    //     $get_room = Room::where('id', 30)->value('property_description');//pluck
+    //     return $get_room;
+    // }
+
+     // dd(Session::get('user_id'));
+       // $rooms['user_id'] = $request->session()->get('ADMIN_ID');
+        //dd($rooms);
+        //dd($request->session()->all());
 

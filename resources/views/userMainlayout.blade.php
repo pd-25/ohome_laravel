@@ -90,7 +90,7 @@
             <div class="dropdown-menu">
               <a class="nav-link " href="{{route('all_rooms')}}">All Room</a>
               <a class="nav-link " href="{{route('my_room')}}">My Rooms</a>
-              <a class="nav-link " href="#">My Booked Rooms</a>
+              {{-- <a class="nav-link " href="#">My Booked Rooms</a> --}}
 
               
                     
@@ -306,7 +306,7 @@
 <script>
     var botmanWidget = {
         aboutText: 'ssdsd',
-        introMessage: "<img draggable="false" role="img" class="emoji" alt="✋" src="https://s.w.org/images/core/emoji/13.1.0/svg/270b.svg"> Hi! I'm form Tutsmake.org"
+        introMessage: "<img draggable="false" role="img" class="emoji" alt="✋" src='https://s.w.org/images/core/emoji/13.1.0/svg/270b.svg'> Hi! I'm form Tutsmake.org"
     };
 </script>
 

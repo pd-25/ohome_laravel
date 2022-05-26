@@ -25,9 +25,9 @@ class BotManController extends Controller
             }elseif($message == 'service'){
                 $botman->reply('I am ohome, I provide online rental room in your locality');
             }elseif($message == 'who made you?'){
-                $botman->reply('I am made by Pradipta and Abhijit with the help of respected HOD- Mr.Adul Rahim');
+                $botman->reply('I am made by Pradipta and Abhijit with the guidence of respected HOD- Mr.Adul Rahim');
             }elseif($message == 'Who made you?'){
-                $botman->reply('I am made by Pradipta and Abhijit with the help of respected HOD- Mr.Adul Rahim');}
+                $botman->reply('I am made by Pradipta and Abhijit with the guidence of respected HOD- Mr.Adul Rahim');}
             // }elseif($message == 'who r u?'){
             //     $botman->reply('I am ohome');
             // }elseif($message == 'who r u?'){
