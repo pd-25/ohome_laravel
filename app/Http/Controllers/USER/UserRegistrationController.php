@@ -125,10 +125,7 @@ class UserRegistrationController extends Controller
             'password' => 'required' 
         ]);
         
-       
-
-            
-            $user =  User::where(['email'=>$request->email])->first();
+       $user =  User::where(['email'=>$request->email])->first();
             // dd($user->id);
             if(!$user || !Hash::check($request->password,$user->password)){
                 $request->session()->flash('message', 'credential error!');

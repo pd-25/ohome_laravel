@@ -72,7 +72,7 @@
                     <button class="btn mt-10 btn-outline-success "><a href="{{route('checkout.credit-card',$room->id)}}" class="link-a">book room
                       <span class="bi bi-chevron-right"></span>
                     </a></button><b style="color:white">or</b>
-                    <button class="btn mt-10 btn-outline-success "><a href="#" class="link-a">Contact Owner
+                    <button class="btn mt-10 btn-outline-success "><a href="#" class="link-a">Contact Owner {{$room->owner_contact}}
                       <span class="bi bi-chevron-right"></span>
                     </a></button>
                   </div>

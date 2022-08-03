@@ -27,7 +27,9 @@ class BotManController extends Controller
             }elseif($message == 'who made you?'){
                 $botman->reply('I am made by Pradipta and Abhijit with the guidence of respected HOD- Mr.Adul Rahim');
             }elseif($message == 'Who made you?'){
-                $botman->reply('I am made by Pradipta and Abhijit with the guidence of respected HOD- Mr.Adul Rahim');}
+                $botman->reply('I am made by Pradipta and Abhijit with the guidence of respected HOD- Mr.Adul Rahim');
+            }elseif($message == 'need room'){
+                $botman->reply('you can search room or go to - <a href = "http://127.0.0.1:8000/all_rooms" target="blank"> rooms<a/>');}
             // }elseif($message == 'who r u?'){
             //     $botman->reply('I am ohome');
             // }elseif($message == 'who r u?'){
@@ -57,13 +59,5 @@ class BotManController extends Controller
         });
     }
 
-    // public function askName2($botman)
-    // {
-    //    // $botman->ask('Hello! What is your Name?', function(Answer $answer) {
-   
-    //         //$name = $answer->getText();
-   
-    //         $botman->say();
-    //     //});
-    // }
+  
 }
