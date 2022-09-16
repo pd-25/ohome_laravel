@@ -153,4 +153,6 @@ class UserRegistrationController extends Controller
         return redirect('/sign_in.sav');
         # code...
     }
+
+    
 }
